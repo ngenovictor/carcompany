@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NewCarComponent } from './new-car.component';
+import { EditCarComponent } from './edit-car.component';
+import { CarListComponent } from './car-list.component'; 
 
 @NgModule({
 	 imports: [
@@ -11,7 +13,9 @@ import { NewCarComponent } from './new-car.component';
   ],
 	declarations:[
 	AppComponent,
-	NewCarComponent
+	NewCarComponent,
+	EditCarComponent,
+	CarListComponent
 	],
 	bootstrap:[AppComponent]
 })

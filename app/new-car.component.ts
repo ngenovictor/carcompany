@@ -4,12 +4,13 @@ import { Car } from './car.model'
 @Component({
   selector: 'add-car',
   template:`
+  <div *ngIf="viewAddButtonValue" class="col-md-4">
     <button  (click)="addNewClick()" *ngIf="createNew===false" class="btn btn-primary form">Add A Car</button>
 	  <div *ngIf="createNew===true" class="form">
 	  	<h2>Add A New Car</h2>
 	  	<div class="form-group">
 	  		<label>ID:</label>
-	  		<input value ="{{existingCars.length}}" type="number" #newCarId readonly class="form-control">
+	  		<input value ="{{allCars.length}}" type="number" #newCarId readonly class="form-control">
 	  	</div>
 	  	<div class="form-group">
 	  		<label>Name:</label>
@@ -32,21 +33,27 @@ import { Car } from './car.model'
 	    newCarPrice.value=""; 
 	    newCarType.value=""; 
 	    newCarPicUrl.value="";'>Done</button>
+	    <button class="btn btn-primary pull-right" (click)="closeEdit()">Cancel</button>
 	  </div>
+	</div>
 
   `
 })
 
 
 export class NewCarComponent {
-	@Input() existingCars: Car[];
+	@Input() allCars: Car[];
 	@Output() newCarSender = new EventEmitter();
+	@Input() viewAddButtonValue;
 
 	public createNew:boolean = false;
 
 	addNewClick(){
 		this.createNew = true;
 	} 
+	closeEdit(){
+		this.createNew = false;
+	}
 	addNewcar(newCarId,newCarName,newCarPrice,newCarType,newCarPicUrl){
 		var newCarToAdd: Car = new Car(newCarId,newCarName,newCarPrice,newCarType,newCarPicUrl);
     this.newCarSender.emit(newCarToAdd);
