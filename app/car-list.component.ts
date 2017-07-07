@@ -10,8 +10,8 @@ import { Car } from './car.model';
       <p>Price: {{car.price}}</p>
 	  	<img src="{{car.pic_url}}">
 	  	<button (click)="editCarClick(car)" class="btn btn-primary">Edit</button>
-	  	<div class="car-status" *ngIf="car.sold===false">Buy</div>
-	  	<div class="car-status" *ngIf="car.sold===true">Sold</div>
+	  	<div class="car-status not-sold" *ngIf="car.sold===false">Buy</div>
+	  	<div class="car-status sold" *ngIf="car.sold===true">Sold</div>
 	  </div>
 	</div>
 	`

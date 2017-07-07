@@ -19,8 +19,9 @@ import { Car } from './car.model';
 			<label for="name">Pic URL:</label>
 			<input class="form-control" [(ngModel)]="carToEdit.pic_url">
 		<div class="form-group">
-			<label for="name">Sold:</label>
-			<input class="form-control" [(ngModel)]="carToEdit.sold">
+			<label for="name">Status:</label>
+			<input *ngIf="carToEdit.sold === true" type="checkbox" checked (click)="toggleDone(false)"/>
+    	<input *ngIf="carToEdit.sold === false" type="checkbox" (click)="toggleDone(true)"/>
 		</div>
 		<button class="btn btn-primary" (click)="doneEditClick()">Done</button>		
 	</div>
@@ -33,9 +34,10 @@ export class EditCarComponent{
 
 	doneEditClick(){
 		this.doneEditClickSender.emit();
+	}
+	toggleDone(soldStatus){
+		this.carToEdit.sold = soldStatus;
 
 	}
-	
-
 }
 // id, name, price, type, pic_url, sold
